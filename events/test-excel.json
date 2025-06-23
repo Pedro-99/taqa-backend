@@ -1,0 +1,8 @@
+{
+  "httpMethod": "POST",
+  "path": "/process",
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "body": "{\"source\": \"excel\", \"data\": [{\"Equipment Number\": \"EQ005\", \"Description\": \"Surchauffe moteur\", \"Detection Date\": \"2024-01-21\", \"Status\": \"New\", \"Priority\": \"2\", \"Equipment Description\": \"Moteur de convoyeur\", \"Section\": \"Production\"}]}"
+}

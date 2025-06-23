@@ -1,0 +1,8 @@
+{
+  "httpMethod": "POST",
+  "path": "/process",
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "body": "{\"source\": \"manual\", \"data\": {\"equipment_number\": \"EQ006\", \"title\": \"Défaillance capteur\", \"description\": \"Capteur de pression non fonctionnel\", \"detection_date\": \"2024-01-22T10:00:00Z\", \"status\": \"new\", \"priority\": 2, \"equipment_description\": \"Système de contrôle pression\", \"responsible_section\": \"Instrumentation\"}}"
+}

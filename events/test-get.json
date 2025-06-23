@@ -1,0 +1,8 @@
+{
+  "httpMethod": "GET",
+  "path": "/anomalies",
+  "queryStringParameters": {
+    "status": "new",
+    "limit": "10"
+  }
+}

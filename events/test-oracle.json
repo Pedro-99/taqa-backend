@@ -1,0 +1,8 @@
+{
+  "httpMethod": "POST",
+  "path": "/process",
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "body": "{\"source\": \"oracle\", \"data\": [{\"Num_equipement\": \"EQ004\", \"Description\": \"Usure des freins\", \"Date de detection de l'anomalie\": \"2024-01-20T08:00:00Z\", \"Statut\": \"Nouveau\", \"Priorité\": \"1\", \"Description equipement\": \"Système de freinage principal\", \"Section proprietaire\": \"Maintenance Mécanique\"}]}"
+}

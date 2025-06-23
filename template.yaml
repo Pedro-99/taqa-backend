@@ -1,0 +1,79 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: TAQATHON Data Processing Functions
+
+Globals:
+  Function:
+    Timeout: 30
+    Runtime: nodejs18.x
+    Environment:
+      Variables:
+        DB_HOST: localhost
+        DB_PORT: 5432
+        DB_NAME: taqathon_anomalies
+        DB_USER: postgres
+        DB_PASSWORD: your_password
+        NODE_ENV: development
+
+Resources:
+  DataProcessorFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/data-processor/
+      Handler: app.lambdaHandler
+      Events:
+        DataProcessing:
+          Type: Api
+          Properties:
+            Path: /process
+            Method: post
+            Cors:
+              AllowMethods: "'POST,OPTIONS'"
+              AllowHeaders: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+              AllowOrigin: "'*'"
+        
+        FileUpload:
+          Type: Api
+          Properties:
+            Path: /upload
+            Method: post
+            Cors:
+              AllowMethods: "'POST,OPTIONS'"
+              AllowHeaders: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+              AllowOrigin: "'*'"
+
+        GetAnomalies:
+          Type: Api
+          Properties:
+            Path: /anomalies
+            Method: get
+            Cors:
+              AllowMethods: "'GET,OPTIONS'"
+              AllowHeaders: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+              AllowOrigin: "'*'"
+
+  OracleProcessorFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/oracle-processor/
+      Handler: oracle.lambdaHandler
+      Timeout: 60
+      Events:
+        OracleSync:
+          Type: Api
+          Properties:
+            Path: /sync-oracle
+            Method: post
+            Cors:
+              AllowMethods: "'POST,OPTIONS'"
+              AllowHeaders: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+              AllowOrigin: "'*'"
+
+Outputs:
+  DataProcessorApi:
+    Description: "API Gateway endpoint URL for Data Processor"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/process/"
+  
+  LocalApiUrl:
+    Description: "Local development API URL"
+    Value: "http://localhost:3001"

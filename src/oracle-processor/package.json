@@ -1,0 +1,10 @@
+{
+  "name": "oracle-processor",
+  "version": "1.0.0",
+  "description": "Oracle data sync processor",
+  "main": "oracle.js",
+  "dependencies": {
+    "pg": "^8.11.3",
+    "uuid": "^9.0.1"
+  }
+}

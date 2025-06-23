@@ -1,0 +1,17 @@
+{
+  "name": "taqathon-data-processor",
+  "version": "1.0.0",
+  "description": "TAQATHON anomaly data processor",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "xlsx": "^0.18.5",
+    "pg": "^8.11.3",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
