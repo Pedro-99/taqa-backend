@@ -2,11 +2,11 @@ const { Pool } = require('pg');
 
 // Create a connection pool
 const pool = new Pool({
-    host: process.env.DB_HOST || 'localhost',
+    host: process.env.DB_HOST || '172.17.0.1',
     port: process.env.DB_PORT || 5432,
     database: process.env.DB_NAME || 'taqathon_anomalies',
-    user: process.env.DB_USER || 'postgres',
-    password: process.env.DB_PASSWORD || 'your_password',
+    user: process.env.DB_USER || 'taqathon_user',
+    password: process.env.DB_PASSWORD || 'taqathon_password',
     max: 10, // Maximum number of connections
     idleTimeoutMillis: 30000,
     connectionTimeoutMillis: 2000,

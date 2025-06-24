@@ -1,5 +1,5 @@
 -- Connect to the database
-\c taqathon_anomalies;
+/* \c taqathon_anomalies; */
 
 -- Create anomalies table
 CREATE TABLE IF NOT EXISTS anomalies (
