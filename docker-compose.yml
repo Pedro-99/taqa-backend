@@ -1,0 +1,38 @@
+services:
+  postgres:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: taqathon_user
+      POSTGRES_PASSWORD: taqathon_password
+      POSTGRES_DB: taqathon_anomalies
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./database/init:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U taqathon_user -d taqathon_anomalies"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 40s
+
+  data-processor-lambda:
+    build: ./src/data-processor
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: taqathon_user
+      DB_PASSWORD: taqathon_password
+      DB_NAME: taqathon_anomalies
+      NODE_ENV: development
+    ports:
+      - "3000:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  pgdata:
